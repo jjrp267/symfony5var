@@ -1,0 +1,54 @@
+<div class="modal fade" id="share" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ "calendars.delegates.new"|trans }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>{{ "calendars.delegates.existing"|trans }}</h4>
+        <template id="template-share">
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <span class="name"></span>
+                    <span class="badge badge-info badge-pill ml-2"></span>
+                </div>
+                <a href="#" class="btn btn-sm btn-danger revoke">{{ "revoke"|trans }}</a>
+            </div>
+        </template>
+        <span class="d-none none"><em>{{ "calendars.delegates.none"|trans }}</em></span>
+        <ul class="list-group" id="shares">
+        </ul>
+        <form class="mt-2">
+          <div class="form-group">
+            <label for="member" class="col-form-label">{{ "calendars.delegates.member.add"|trans }}</label>
+            <select class="form-control" id="member" {% if principals|length == 0 %}disabled="disabled"{% endif %}>
+              {% for principal in principals %}
+                <option value="{{ principal.id}}">{{ principal.displayName }} ({{ principal.email }})</option>
+              {% endfor %}
+            </select>
+            <small class="form-text text-muted">
+            {% if principals|length == 0 %}
+              {{ "calendars.delegates.member.none"|trans }}
+            {% else %}
+              {{ "calendars.delegates.member.help"|trans }}
+            {% endif %}
+            </small>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="write" {% if principals|length == 0 %}disabled="disabled"{% endif %}>
+            <label class="form-check-label" for="write">
+              {{ "calendars.delegates.write.give"|trans }}
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ "cancel"|trans }}</button>
+        <a href="#" class="btn btn-primary add-sharee{% if principals|length == 0 %} disabled"{% endif %}">{{ "add"|trans }}</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    default_database_driver: "mysql"
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Services\Utils:
+        arguments:
+            $authRealm: "%env(AUTH_REALM)%"
+
+    App\Services\IMAPAuth:
+        arguments:
+            $IMAPAuthUrl: "%env(IMAP_AUTH_URL)%"
+            $autoCreate: "%env(bool:IMAP_AUTH_USER_AUTOCREATE)%"
+
+    App\Services\LDAPAuth:
+        arguments:
+            $LDAPAuthUrl: "%env(LDAP_AUTH_URL)%"
+            $LDAPDnPattern: "%env(LDAP_DN_PATTERN)%"
+            $LDAPMailAttribute: "%env(LDAP_MAIL_ATTRIBUTE)%"
+            $autoCreate: "%env(bool:LDAP_AUTH_USER_AUTOCREATE)%"
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Controller\DAVController:
+        arguments:
+            $publicDir: "%kernel.project_dir%/public"
+            $calDAVEnabled: "%env(bool:CALDAV_ENABLED)%"
+            $cardDAVEnabled: "%env(bool:CARDDAV_ENABLED)%"
+            $webDAVEnabled: "%env(bool:WEBDAV_ENABLED)%"
+            $inviteAddress: "%env(INVITE_FROM_ADDRESS)%"
+            $authMethod: "%env(AUTH_METHOD)%"
+            $authRealm: "%env(AUTH_REALM)%"
+            $webdavPublicDir: "%env(WEBDAV_PUBLIC_DIR)%"
+            $webdavTmpDir: "%env(WEBDAV_TMP_DIR)%"
+
+    App\Security\LoginFormAuthenticator:
+        arguments:
+            $adminLogin: "%env(ADMIN_LOGIN)%"
+            $adminPassword: "%env(ADMIN_PASSWORD)%"

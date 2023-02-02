@@ -1,0 +1,26 @@
+security:
+    enable_authenticator_manager: true
+    providers:
+        admin_user_provider:
+            id: App\Security\AdminUserProvider
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            provider: admin_user_provider
+            logout:
+                path: app_logout
+                target: dashboard
+
+    access_control:
+        - { path: ^/$, roles: PUBLIC_ACCESS }
+        - { path: ^/dav, roles: PUBLIC_ACCESS }
+        - { path: ^/dashboard, roles: ROLE_ADMIN }
+        - { path: ^/users, roles: ROLE_ADMIN }
+        - { path: ^/calendars, roles: ROLE_ADMIN }
+        - { path: ^/adressbooks, roles: ROLE_ADMIN }

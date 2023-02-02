@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Davis{% endblock %}</title>
+        <link rel="stylesheet" href="/css/bootstrap-light-prefers-dark.min.css" />
+        <style type="text/css">
+          .hero {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+          }
+          .badge-success {
+            background-color: #28a745;
+          }
+          .badge-warning {
+            background-color: #ffc107;
+          }
+          .badge-danger {
+            background-color: #dc3545;
+          }
+          .badge {
+            color: #fff;
+            display: inline-block;
+            padding: .25em .4em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25rem;
+          }
+          .admin {
+            margin-top: 30px;
+          }
+          h3 {
+            font-size: 1.25em;
+            margin-bottom: 30px;
+          }
+          img {
+            margin-bottom: 10px;
+          }
+        </style>
+    </head>
+    <body>
+      <div class="hero">
+        <img src="/images/logo.png" width="60px">
+        <h3>{{ "davis"|trans }} v{{ version }}</h3>
+        <div class="caldav">CalDAV : {% if calDAVEnabled %}<span class="badge badge-success">{{ "enabled"|trans }}</span>{% else %}<span class="badge badge-danger">{{ "disabled"|trans }}</span>{% endif %}</div>
+        <div class="carddav">CardDAV : {% if cardDAVEnabled %}<span class="badge badge-success">{{ "enabled"|trans }}</span>{% else %}<span class="badge badge-danger">{{ "disabled"|trans }}</span>{% endif %}</div>
+        <div class="webdav">WebDAV : {% if webDAVEnabled %}<span class="badge badge-success">{{ "enabled"|trans }}</span>{% else %}<span class="badge badge-danger">{{ "disabled"|trans }}</span>{% endif %}</div>
+        <a href="{{ path('dashboard') }}" class="admin">{{ "admin.interface"|trans }}</a>
+      </div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+body {
+    padding-top: calc(56px + 30px);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+/* Add a simple line below display headings */
+.display-4 {
+    font-size: 2.5rem;
+    border-bottom: 1px solid var(--gray);
+}
+
+/* Flashes (messages) styles */
+.flashes {
+    position: fixed;
+    top: 20px;
+    right: 0;
+    z-index: 1050;
+}
+.flashes .inner {
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+.flashes .toast {
+    min-width: 270px;
+}
+
+/* Little color swatch to show calendar color */
+#calendar_instance_calendarColor_help::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 4px;
+    right: 19px;
+    background: var(--calendar-color);
+    border-radius: 2px;
+}
+
+/* Special indicator badge */
+.badge.badge-indicator {
+    height: 16px;
+    width: 16px;
+    padding: 0;
+    border-radius: 50%;
+}
+.popover .popover-body {
+    user-select: text;
+}
