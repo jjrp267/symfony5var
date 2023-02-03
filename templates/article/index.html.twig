@@ -10,6 +10,8 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Campaña del artículo</th>
+                <th>Fecha</th>
+                <th>Es editable</th>
                 <th>acciones</th>
             </tr>
         </thead>
@@ -19,6 +21,8 @@
                 <td>{{ article.id }}</td>
                 <td>{{ article.name }}</td>
                 <td>{{ article.campanya }}</td>
+                <td>{{ article.date |date('d-m-Y') }}</td>
+                <td>{{ article.iseditable|replace({'1':"si",0:"no"}) }}</td>
                 <td>
                     <a href="{{ path('app_article_show', {'id': article.id}) }}">mostrar</a>
                     <a href="{{ path('app_article_edit', {'id': article.id}) }}">editar</a>

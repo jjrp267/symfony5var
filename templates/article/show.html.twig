@@ -19,6 +19,14 @@
                 <th>Campaña</th>
                 <td>{{ article.campanya }}</td>
             </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ article.date |date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>es editable</th>
+                <td>{{ article.iseditable }}</td>
+            </tr>
         </tbody>
     </table>
 

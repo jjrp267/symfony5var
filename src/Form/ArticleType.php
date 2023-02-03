@@ -6,6 +6,7 @@ use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ArticleType extends AbstractType
 {
@@ -14,6 +15,8 @@ class ArticleType extends AbstractType
         $builder
             ->add('name')
             ->add('campanya')
+            ->add('date', DateTimeType::class, ['date_label' => 'Starts On'])
+            ->add('iseditable')
         ;
     }
 

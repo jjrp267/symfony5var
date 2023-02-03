@@ -27,6 +27,16 @@ class Article
      */
     private $campanya;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $iseditable;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +62,30 @@ class Article
     public function setCampanya(string $campanya): self
     {
         $this->campanya = $campanya;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function isIseditable(): ?bool
+    {
+        return $this->iseditable;
+    }
+
+    public function setIseditable(bool $iseditable): self
+    {
+        $this->iseditable = $iseditable;
 
         return $this;
     }
