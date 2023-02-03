@@ -541,6 +541,10 @@
         <source>calendar.share_access.3</source>
         <target>read / write</target>
       </trans-unit>
+      <trans-unit id="AAxxxEE" resname="article.list">
+        <source>article.list</source>
+        <target>Lista de artículos</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

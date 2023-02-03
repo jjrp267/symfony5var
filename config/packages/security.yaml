@@ -24,3 +24,4 @@ security:
         - { path: ^/users, roles: ROLE_ADMIN }
         - { path: ^/calendars, roles: ROLE_ADMIN }
         - { path: ^/adressbooks, roles: ROLE_ADMIN }
+        - { path: ^/article, roles: ROLE_ADMIN }
