@@ -6,8 +6,8 @@
     "require": {
         "php": "^7.3.0 || ^8.0",
         "ext-ctype": "*",
-        "ext-iconv": "*",
         "ext-gd": "*",
+        "ext-iconv": "*",
         "composer-runtime-api": "^2",
         "dantsu/php-osm-static-api": "^0.3.0",
         "doctrine/annotations": "^1.0",
@@ -16,6 +16,7 @@
         "doctrine/orm": "^2.9",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sabre/dav": "^4.1",
+        "sensio/framework-extra-bundle": "^6.2",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^5.4",
         "symfony/console": "^5.4",

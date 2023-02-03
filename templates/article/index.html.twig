@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% set menu = 'resources' %}
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <h1>Lista de artículos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Campaña del artículo</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.name }}</td>
+                <td>{{ article.campanya }}</td>
+                <td>
+                    <a href="{{ path('app_article_show', {'id': article.id}) }}">mostrar</a>
+                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no hay datos de artículos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_article_new') }}">Crear nuevo artículo</a>
+{% endblock %}
